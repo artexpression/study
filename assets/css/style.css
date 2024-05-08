@@ -361,16 +361,13 @@ line-height: 32px;
   'wght' 400,
   'GRAD'0,
   'opsz' 24;
-<<<<<<< HEAD
-=======
 
 
 }
 /*H*/
->>>>>>> 4857ff877475e9fd030833a2b5931a687f87e513
 
 
-}
+
 /*H*/
 
 .section {margin-block-end: var(--section-gap);}
@@ -745,11 +742,9 @@ line-height: 32px;
  gap: 20px;
  padding-inline: 16px;
  border-block-end: 1px solid var(--outline);
-<<<<<<< HEAD
+
  z-index: 999;
-=======
- z-index: 0;
->>>>>>> 4857ff877475e9fd030833a2b5931a687f87e513
+
  /*H*/
 }
 
