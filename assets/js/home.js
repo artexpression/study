@@ -1,5 +1,8 @@
 'use strict';
 
+import { fetchData } from "./api.js";
+import { $skeletonCard, cardQueries } from "./global.js";
+
 /**
  * Home page Search
  */
@@ -49,6 +52,9 @@ addEventOnElements($tabBtns, 'click', function() {
 
     $lastActiveTabPanel = $currentTabPanel;
     $lastActiveTabBtn = this;
+
+    /**seccion de tab panel despues de la api */
+    addTabContent(this, $currentTabPanel);
 });
 
 
@@ -81,6 +87,28 @@ addEventOnElements($tabBtns, 'keydown', function(e) {
 
 
 
+/**
+ * Work with api 
+ * fetch dat for tab contet
+*/
 
+
+const addTabContent = ($currentTabBtn, $currentTabPanel) => {
+
+    const $gridList = document.createElement('div');
+    $gridList.classList.add('grid-list');
+
+    $currentTabPanel.innerHTML = `
+    <div class="grid-list">
+        ${$skeletonCard.repeat(12)}
+    </div>`;
+
+    fetchData([['mealType', $currentTabBtn.textContent.trim().toLowerCase(), ...cardQueries], function (data){
+        console.log(data)
+    }])
+}
+
+
+addTabContent($lastActiveTabBtn, $lastActiveTabPanel);
 
 
