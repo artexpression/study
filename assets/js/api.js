@@ -1,9 +1,9 @@
 'use  strict'
 
 
-window.ACCESS_POINT = ' https://api.edamam.com/api/recipes/v2'
-const /**{String} */ APP_ID = "296a48d2";
-const /**{String} */ API_KEY = "24709df73525ad4f16ff70e6eb3763bc";
+window.ACCESS_POINT = 'https://api.edamam.com/api/recipes/v2'
+const /**{String} */ APP_ID = "4d55a9ff";
+const /**{String} */ API_KEY = "ba18fced2f491c8e445ffa6fa92dae29";
 const /**{String} */ TYPE = "public";
 
 /**
@@ -21,18 +21,21 @@ const /**{String} */ TYPE = "public";
 
 export const fetchData = async function (queries, successCallback) {
     const /**{String} */ query = queries?.join('&')
-    .replace(/ /g, '=')
-    .replace(/,/g, '%2C')
-    .replace(/&/g, '%28');
+    .replace(/,/g, '=')
+    .replace(/ /g, '%20')
+    .replace(/\+/g, '%2B');
 
 
-    const /**{String }  */ url = `${ACCESS_POINT}?app_id=${APP_ID}&app_key=${API_KEY}&type=${TYPE}${query ? `&q=${query}` : ''}`;
-
+    const /**{String }  */ url = `${ACCESS_POINT}?app_id=${APP_ID}&app_key=${API_KEY}&type=${TYPE}${query ? `&${query}` : ''}`;
+    console.log(url)
     const /** {Object} */ response = await fetch(url);
 
     if( response.ok){
         const /**{Object} */ data = await response.json();
         successCallback(data);
+       
+    }else {
+        console.log("no existen datos")
     }
 }
  
